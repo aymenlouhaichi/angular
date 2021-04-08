@@ -14,6 +14,10 @@ pipeline {
             script: "git rev-parse --abbrev-ref HEAD"
         )
         HOME = '.'
+       registry = "YourDockerhubAccount/YourRepository" 
+        registryCredential = 'DockerHub' 
+        dockerImage = 'ayoubch1/angular:${BUILD_ID}'
+   
 	  }
 
 
@@ -78,6 +82,4 @@ pipeline {
     }
     }
    
-}
-    }
 }
