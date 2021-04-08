@@ -47,5 +47,37 @@ pipeline {
                 }
             }
         }
+       stage('Build image') {         
+     steps {
+       sh 'docker build /var/lib/jenkins/workspace/angular@2/ -t ayoubch1/angular:${BUILD_ID}'
+     }
+       } 
+      stage('Deploy Image') {
+      steps{
+       
+        sh 'docker push ayoubch1/angular:${BUILD_ID}'
+        sh 'docker tag ayoubch1/angular:${BUILD_ID} ayoubch1/angular:latest'
+        
+        
+      }
+    }
+      
+      stage('Remove Image & container') {
+      steps{
+       
+        sh 'docker rmi -f ayoubch1/angular:${BUILD_ID}'
+        sh 'docker stop angular || true && docker rm -f angular || true'
+      }
+    }
+       stage('RUN Image') {
+      steps{
+       
+        sh 'docker run --name=angular -it -d -p 80:80 ayoubch1/angular:latest'
+        
+      }
+    }
+    }
+   
+}
     }
 }
