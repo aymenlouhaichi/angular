@@ -53,7 +53,7 @@ pipeline {
         }
        stage('Build image') {         
      steps {
-       sh 'docker build /var/lib/jenkins/workspace/angular@2/ -t ayoubch1/angular:${BUILD_ID}'
+       sh 'docker build /var/lib/jenkins/workspace/angular@2/Jenkins-pipline-Aymen-CI-CD-checkpoint-GoMC@2  -t ayoubch1/angular:${BUILD_ID}'
      }
        } 
       stage('Deploy Image') {
