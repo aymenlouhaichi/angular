@@ -58,7 +58,7 @@ pipeline {
        } 
       stage('Deploy Image') {
       steps{
-       
+        sh 'docker login -u ayoubch1 -p password11*'
         sh 'docker push ayoubch1/angular:${BUILD_ID}'
         sh 'docker tag ayoubch1/angular:${BUILD_ID} ayoubch1/angular:latest'
         
